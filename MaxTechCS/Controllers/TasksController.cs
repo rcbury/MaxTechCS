@@ -10,8 +10,15 @@ namespace MaxTechCS.Controllers
         [HttpGet("/task1")]
         public async Task<IActionResult> GetTask1(string input)
         {
-            var result = StringProcessor.ProcessString(input);
-            return Ok(result);
+            try
+            {
+                var result = StringProcessor.ProcessString(input);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -13,10 +13,12 @@ namespace MaxTechCS.Utils
             CheckString(input);
             var resultString = GetProcessedString(input);
             var resultStringCharsCount = GetCharsCount(resultString);
+            var longestSubstring = GetLongestSubstring(resultString);
             return new ProcessedStringDto()
             {
                 Result = resultString,
-                CharsCount = resultStringCharsCount
+                CharsCount = resultStringCharsCount,
+                LongestSubstring = longestSubstring
             };
         }
 
@@ -63,6 +65,28 @@ namespace MaxTechCS.Utils
                 }
             }
             return result;
+        }
+
+        private static string GetLongestSubstring(string input) 
+        {
+            var pattern = "aeiouy";
+            var longestSubstringStartChar = input.SkipWhile(x => !pattern.Contains(x)).FirstOrDefault();
+            if (longestSubstringStartChar == default(char)) 
+            {
+                return "";
+            }
+            var longestSubstringEndChar = input.Reverse().SkipWhile(x => !pattern.Contains(x)).FirstOrDefault();
+            if (longestSubstringEndChar == default(char)) 
+            {
+                return longestSubstringStartChar.ToString();
+            }
+            var longestSubstringStartIndex = input.IndexOf(longestSubstringStartChar);
+            var longestSubstringEndIndex = input.LastIndexOf(longestSubstringEndChar);
+            if (longestSubstringEndIndex - longestSubstringStartIndex + 1 == input.Length) 
+            {
+                return input;
+            }
+            return input.Substring(longestSubstringStartIndex, longestSubstringEndIndex - longestSubstringStartIndex + 1);
         }
     }
 }

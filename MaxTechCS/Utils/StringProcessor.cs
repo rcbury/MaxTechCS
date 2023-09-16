@@ -1,4 +1,5 @@
-﻿using MaxTechCS.Data.Dto;
+﻿using MaxTechCS.Data.Configuration;
+using MaxTechCS.Data.Dto;
 using MaxTechCS.Data.Enum;
 using RestSharp;
 using System.Text.Json;
@@ -63,7 +64,7 @@ namespace MaxTechCS.Utils
             var allowedSymbols = "abcdefghijklmnopqrstuvwxyz";
             foreach (var inputChar in input)
             {
-                if (!allowedSymbols.Contains(inputChar))
+                if (!allowedSymbols.Contains(inputChar) || Configuration.BlackList.Contains(input))
                 {
                     throw new ArgumentException("Input string is not allowed");
                 }
@@ -111,7 +112,7 @@ namespace MaxTechCS.Utils
 
         private static int GetRandomIndex(int maxNumber) 
         {
-            var client = new RestClient("https://csrng.net/csrng/");
+            var client = new RestClient(Configuration.RandomApiUrl);
             var request = new RestRequest($"/csrng.php?min=0&max={maxNumber}", Method.Get);
             var result = client.Execute(request);
             if (result.IsSuccessful && result.Content != null)

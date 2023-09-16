@@ -1,3 +1,5 @@
+using MaxTechCS.Data.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+Configuration.RandomApiUrl = builder.Configuration.GetValue<string>("RandomApi");
+Configuration.BlackList = builder.Configuration.GetSection("Settings").GetSection("BlackList").Get<List<string>>();
 
 var app = builder.Build();
 

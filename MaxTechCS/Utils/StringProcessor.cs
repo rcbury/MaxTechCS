@@ -30,7 +30,7 @@ namespace MaxTechCS.Utils
             };
         }
 
-        private static string GetSortedString(string input, int sortType)
+        public static string GetSortedString(string input, int sortType)
         {
             if ((SortType)sortType == SortType.Quicksort)
             {
@@ -43,7 +43,7 @@ namespace MaxTechCS.Utils
             throw new ArgumentException("Sort type is not allowed. 0 is for Quicksort and 1 is for Tree sort");
         }
 
-        private static string GetProcessedString(string input)
+        public static string GetProcessedString(string input)
         {
             if (input.Length % 2 != 0)
             {
@@ -59,7 +59,7 @@ namespace MaxTechCS.Utils
             }
         }
 
-        private static void CheckString(string input)
+        public static void CheckString(string input)
         {
             var allowedSymbols = "abcdefghijklmnopqrstuvwxyz";
             foreach (var inputChar in input)
@@ -71,7 +71,7 @@ namespace MaxTechCS.Utils
             }
         }
 
-        private static Dictionary<char, int> GetCharsCount(string input) 
+        public static Dictionary<char, int> GetCharsCount(string input) 
         {
             var result = new Dictionary<char, int>();
             foreach (var symbol in input) 
@@ -88,7 +88,7 @@ namespace MaxTechCS.Utils
             return result;
         }
 
-        private static string GetLongestSubstring(string input) 
+        public static string GetLongestSubstring(string input) 
         {
             var pattern = "aeiouy";
             var longestSubstringStartChar = input.SkipWhile(x => !pattern.Contains(x)).FirstOrDefault();

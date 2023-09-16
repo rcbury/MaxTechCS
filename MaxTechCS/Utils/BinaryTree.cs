@@ -40,8 +40,6 @@
             }
         }
 
-        //TODO: Пересмотреть составление массива
-
         public IEnumerable<T> GetSortedArray() 
         {
             IEnumerable<T> result = new List<T>() { NodeValue };

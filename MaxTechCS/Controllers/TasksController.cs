@@ -8,11 +8,11 @@ namespace MaxTechCS.Controllers
     public class TasksController : ControllerBase
     {
         [HttpGet("/task1")]
-        public async Task<IActionResult> GetTask1(string input)
+        public async Task<IActionResult> GetTask1(string input, int sortType)
         {
             try
             {
-                var result = StringProcessor.ProcessString(input);
+                var result = StringProcessor.ProcessString(input, sortType);
                 return Ok(result);
             }
             catch (Exception ex)

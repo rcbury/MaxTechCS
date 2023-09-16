@@ -12,7 +12,7 @@ namespace MaxTechCS.Utils
             }
             CheckString(input);
             var resultString = GetProcessedString(input);
-            var resultStringCharsCount = GetCharsCount(input);
+            var resultStringCharsCount = GetCharsCount(resultString);
             return new ProcessedStringDto()
             {
                 Result = resultString,

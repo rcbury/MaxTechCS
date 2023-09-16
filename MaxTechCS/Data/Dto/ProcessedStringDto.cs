@@ -6,5 +6,6 @@
         public Dictionary<char, int> CharsCount { get; set; } = new Dictionary<char, int>();
         public string LongestSubstring { get; set; } = "";
         public string SortedString { get; set; } = "";
+        public string ResultWithoutRandomChar { get; set; } = "";
     }
 }

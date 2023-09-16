@@ -1,4 +1,5 @@
-using MaxTechCS.Data.Configuration;
+using MaxTechCS.Data.Global;
+using MaxTechCS.Data.Global.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +9,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var settingsSection = builder.Configuration.GetSection("Settings");
+
 Configuration.RandomApiUrl = builder.Configuration.GetValue<string>("RandomApi");
-Configuration.BlackList = builder.Configuration.GetSection("Settings").GetSection("BlackList").Get<List<string>>();
+Configuration.BlackList = settingsSection.GetSection("BlackList").Get<List<string>>();
+ParallelVariables.ParallelLimit = settingsSection.GetValue<int>("ParallelLimit");
 
 var app = builder.Build();
 

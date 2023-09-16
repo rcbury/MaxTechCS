@@ -1,5 +1,7 @@
 ﻿using MaxTechCS.Data.Dto;
 using MaxTechCS.Data.Enum;
+using RestSharp;
+using System.Text.Json;
 
 namespace MaxTechCS.Utils
 {
@@ -16,12 +18,14 @@ namespace MaxTechCS.Utils
             var resultStringCharsCount = GetCharsCount(resultString);
             var longestSubstring = GetLongestSubstring(resultString);
             var sortedString = GetSortedString(resultString, sortType);
+            var resultStringWithoutRandomChar = GetStringWithoutRandomChar(resultString);
             return new ProcessedStringDto()
             {
                 Result = resultString,
                 CharsCount = resultStringCharsCount,
                 LongestSubstring = longestSubstring,
-                SortedString = sortedString
+                SortedString = sortedString,
+                ResultWithoutRandomChar = resultStringWithoutRandomChar
             };
         }
 
@@ -103,6 +107,29 @@ namespace MaxTechCS.Utils
                 return input;
             }
             return input.Substring(longestSubstringStartIndex, longestSubstringEndIndex - longestSubstringStartIndex + 1);
+        }
+
+        private static int GetRandomIndex(int maxNumber) 
+        {
+            var client = new RestClient("https://csrng.net/csrng/");
+            var request = new RestRequest($"/csrng.php?min=0&max={maxNumber}", Method.Get);
+            var result = client.Execute(request);
+            if (result.IsSuccessful && result.Content != null)
+            {
+                var randomIntegerDto = JsonSerializer.Deserialize<List<RandomIntegerDto>>(result.Content).First();
+                return randomIntegerDto.Random;
+            }
+            else 
+            {
+                Random random = new Random();
+                return random.Next(maxNumber);
+            }
+        }
+
+        private static string GetStringWithoutRandomChar(string input) 
+        {
+            var randomIndex = GetRandomIndex(input.Length - 1);
+            return input.Remove(randomIndex, 1);
         }
     }
 }

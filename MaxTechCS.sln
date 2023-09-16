@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxTechCS", "MaxTechCS\MaxTechCS.csproj", "{EBAF9722-BCF5-4D9D-A097-45FD7181092B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxTechCSTests", "MaxTechCSTests\MaxTechCSTests.csproj", "{E4F6E7ED-D7DE-4CC2-A732-18447CAEFDE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EBAF9722-BCF5-4D9D-A097-45FD7181092B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBAF9722-BCF5-4D9D-A097-45FD7181092B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBAF9722-BCF5-4D9D-A097-45FD7181092B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F6E7ED-D7DE-4CC2-A732-18447CAEFDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F6E7ED-D7DE-4CC2-A732-18447CAEFDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F6E7ED-D7DE-4CC2-A732-18447CAEFDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F6E7ED-D7DE-4CC2-A732-18447CAEFDE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

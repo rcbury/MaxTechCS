@@ -1,6 +1,6 @@
-﻿using MaxTechCS.Data.Configuration;
-using MaxTechCS.Data.Dto;
+﻿using MaxTechCS.Data.Dto;
 using MaxTechCS.Data.Enum;
+using MaxTechCS.Data.Global.Configuration;
 using RestSharp;
 using System.Text.Json;
 

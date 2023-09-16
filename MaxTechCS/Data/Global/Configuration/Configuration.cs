@@ -1,4 +1,4 @@
-﻿namespace MaxTechCS.Data.Configuration
+﻿namespace MaxTechCS.Data.Global.Configuration
 {
     public static class Configuration
     {

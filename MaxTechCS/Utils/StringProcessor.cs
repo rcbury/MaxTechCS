@@ -1,10 +1,11 @@
 ﻿using MaxTechCS.Data.Dto;
+using MaxTechCS.Data.Enum;
 
 namespace MaxTechCS.Utils
 {
     public static class StringProcessor
     {
-        public static ProcessedStringDto ProcessString(string input)
+        public static ProcessedStringDto ProcessString(string input, int sortType)
         {
             if (input == null)
             {
@@ -14,12 +15,27 @@ namespace MaxTechCS.Utils
             var resultString = GetProcessedString(input);
             var resultStringCharsCount = GetCharsCount(resultString);
             var longestSubstring = GetLongestSubstring(resultString);
+            var sortedString = GetSortedString(resultString, sortType);
             return new ProcessedStringDto()
             {
                 Result = resultString,
                 CharsCount = resultStringCharsCount,
-                LongestSubstring = longestSubstring
+                LongestSubstring = longestSubstring,
+                SortedString = sortedString
             };
+        }
+
+        private static string GetSortedString(string input, int sortType)
+        {
+            if ((SortType)sortType == SortType.Quicksort)
+            {
+                return string.Join("", input.ToCharArray().Quicksort());
+            }
+            else if ((SortType)sortType == SortType.TreeSort) 
+            {
+                return string.Join("", input.ToCharArray().TreeSort());
+            }
+            throw new ArgumentException("Sort type is not allowed. 0 is for Quicksort and 1 is for Tree sort");
         }
 
         private static string GetProcessedString(string input)
